@@ -48,25 +48,25 @@ paperlessbilling = IF(paperlessbilling = 'Yes', 1, 0);
 
 UPDATE telco_customers
 SET Churn = CASE
-				WHEN churn = 'Yes' THEN 1
+		WHEN churn = 'Yes' THEN 1
                 ELSE 0
-			END;
+		END;
 
 SELECT * FROM telco_customers;
 
--- Creating categoricall Bins on the basis of Tenure --
+-- Creating categorical Bins on the basis of Tenure --
 
 ALTER TABLE telco_customers
 ADD COLUMN Tenure_terms VARCHAR(15);
 
 
--- Accirding to tenure Categorizing customers into Short,Mid or Long Term --
+-- According to tenure Categorizing customers into Short,Mid or Long Term --
 UPDATE telco_customers
 SET tenure_terms = 
 CASE
 	WHEN Tenure <=12 THEN 'Short Term'
-    WHEN Tenure BETWEEN 13 AND 24 THEN 'Mid Term'
-    WHEN Tenure >24 THEN 'Long Term'
+    	WHEN Tenure BETWEEN 13 AND 24 THEN 'Mid Term'
+  	WHEN Tenure >24 THEN 'Long Term'
 	ELSE 'Others'
 END;
 
